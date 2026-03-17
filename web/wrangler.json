@@ -6,14 +6,14 @@
   "kv_namespaces": [
     {
       "binding": "SANITY_CACHE",
-      "id": "placeholder_kv_id"
+      "id": "aaa6a867448a49ddbac162f6622f3442"
     }
   ],
   "d1_databases": [
     {
       "binding": "DB",
-      "database_name": "ubs-sanity",
-      "database_id": "placeholder_d1_id"
+      "database_name": "ubs-tag-cache",
+      "database_id": "b9309407-04c9-485c-868c-ed8293f6fd38"
     }
   ],
   "vars": {

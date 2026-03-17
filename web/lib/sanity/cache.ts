@@ -93,7 +93,7 @@ export async function clearCache(env: Env): Promise<void> {
 /**
  * Initialize D1 database schema
  * Run this once manually or via migration:
- * wrangler d1 execute ubs-sanity --command "CREATE TABLE IF NOT EXISTS sanity_cache (key TEXT PRIMARY KEY, data TEXT NOT NULL, updated_at TEXT NOT NULL)"
+ * wrangler d1 execute ubs-tag-cache --command "CREATE TABLE IF NOT EXISTS sanity_cache (key TEXT PRIMARY KEY, data TEXT NOT NULL, updated_at TEXT NOT NULL)"
  */
 export const D1_SCHEMA = `
 CREATE TABLE IF NOT EXISTS sanity_cache (

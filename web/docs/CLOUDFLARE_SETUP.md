@@ -8,10 +8,10 @@ KV (Key-Value) storage for fast Sanity content caching.
 
 ```bash
 # Create KV namespace
-wrangler kv:namespace create SANITY_CACHE
+wrangler kv namespace create ubs-page-cache
 
 # Output will show: 
-# Created namespace with title "ubs-SANITY_CACHE"
+# Created namespace with title "ubs-page-cache"
 # Add the following to your wrangler.json:
 # { binding = "SANITY_CACHE", id = "abc123..." }
 ```
@@ -35,14 +35,14 @@ D1 (SQL database) for persistent Sanity content storage.
 
 ```bash
 # Create D1 database
-wrangler d1 create ubs-sanity
+wrangler d1 create ubs-tag-cache
 
 # Output will show:
-# Created database ubs-sanity with id: xyz789...
+# Created database ubs-tag-cache with id: xyz789...
 # Add the following to your wrangler.json:
 # [[d1_databases]]
 # binding = "DB"
-# database_name = "ubs-sanity"
+# database_name = "ubs-tag-cache"
 # database_id = "xyz789..."
 ```
 
@@ -53,7 +53,7 @@ Copy the `database_id` and update `wrangler.json`:
   "d1_databases": [
     {
       "binding": "DB",
-      "database_name": "ubs-sanity",
+      "database_name": "ubs-tag-cache",
       "database_id": "YOUR_D1_ID_HERE"
     }
   ]
@@ -66,10 +66,10 @@ Create the cache table in D1:
 
 ```bash
 # Create schema
-wrangler d1 execute ubs-sanity --command "CREATE TABLE IF NOT EXISTS sanity_cache (key TEXT PRIMARY KEY, data TEXT NOT NULL, updated_at TEXT NOT NULL)"
+wrangler d1 execute ubs-tag-cache --command "CREATE TABLE IF NOT EXISTS sanity_cache (key TEXT PRIMARY KEY, data TEXT NOT NULL, updated_at TEXT NOT NULL)"
 
 # Verify table was created
-wrangler d1 execute ubs-sanity --command "SELECT name FROM sqlite_master WHERE type='table'"
+wrangler d1 execute ubs-tag-cache --command "SELECT name FROM sqlite_master WHERE type='table'"
 ```
 
 You should see `sanity_cache` in the output.
@@ -222,10 +222,10 @@ Check D1 database:
 
 ```bash
 # Query cache table
-wrangler d1 execute ubs-sanity --command "SELECT * FROM sanity_cache"
+wrangler d1 execute ubs-tag-cache --command "SELECT * FROM sanity_cache"
 
 # Check last update time
-wrangler d1 execute ubs-sanity --command "SELECT key, updated_at FROM sanity_cache"
+wrangler d1 execute ubs-tag-cache --command "SELECT key, updated_at FROM sanity_cache"
 ```
 
 ## Troubleshooting
