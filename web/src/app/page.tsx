@@ -1,4 +1,7 @@
-import { getHomepage } from '@/lib/sanity/queries';
+import { getHomepage } from '@/sanity/queries';
+
+// On-demand revalidation only (triggered by Sanity webhook)
+export const revalidate = false;
 
 export default async function Home() {
   const data = await getHomepage();

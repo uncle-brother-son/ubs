@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { getHomepage } from '@/lib/sanity/queries';
-import { urlFor } from '@/lib/sanity/image';
+import { getHomepage } from '@/sanity/queries';
+import { urlFor } from '@/sanity/image';
 
 export async function generateMetadata(): Promise<Metadata> {
   const data = await getHomepage();

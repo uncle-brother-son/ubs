@@ -1,0 +1,36 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "ubs",
+  "compatibility_date": "2026-03-06",
+  "main": ".open-next/worker.js",
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "services": [
+    {
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "ubs"
+    }
+  ],
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "vars": {
+    "NEXT_PUBLIC_SANITY_PROJECT_ID": "9tqz91vf",
+    "NEXT_PUBLIC_SANITY_DATASET": "production"
+  },
+  "kv_namespaces": [
+    {
+      "binding": "NEXT_INC_CACHE_KV",
+      "id": "aaa6a867448a49ddbac162f6622f3442"
+    }
+  ],
+  "d1_databases": [
+    {
+      "binding": "NEXT_TAG_CACHE_D1",
+      "database_id": "b9309407-04c9-485c-868c-ed8293f6fd38",
+      "database_name": "ubs-tag-cache"
+    }
+  ],
+  "workers_dev": true,
+  "preview_urls": false
+}
