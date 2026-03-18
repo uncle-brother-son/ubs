@@ -41,7 +41,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Parse webhook payload
-    const body = await request.json()
+    const body = await request.json() as { _type?: string; slug?: { current?: string } }
     const documentType = body._type
 
     if (!documentType) {
