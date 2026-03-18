@@ -8,7 +8,7 @@ import { NextRequest, NextResponse } from 'next/server'
  * Usage:
  * POST /api/revalidate
  * Headers: x-sanity-webhook-secret: <your-secret>
- * Body: { _type: "homepage", slug: { current: "..." } }
+ * Body: { _type: "homepage", slug: "..." }
  */
 
 // Map Sanity document types to Next.js paths
@@ -39,7 +39,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Parse webhook payload
-    const body = await request.json() as { _type?: string; slug?: { current?: string } }
+    const body = await request.json() as { _type?: string; slug?: string }
     const documentType = body._type
 
     if (!documentType) {
@@ -53,8 +53,8 @@ export async function POST(request: NextRequest) {
     let path = TYPE_TO_PATH_MAP[documentType]
 
     // Handle dynamic paths with slugs
-    if (body.slug?.current && path?.includes('[slug]')) {
-      path = path.replace('[slug]', body.slug.current)
+    if (body.slug && path?.includes('[slug]')) {
+      path = path.replace('[slug]', body.slug)
     }
 
     if (!path) {
