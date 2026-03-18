@@ -349,6 +349,29 @@ export default defineCloudflareConfig({
 });
 ```
 
+#### `next.config.ts` — Static Asset Cache Headers
+
+Add a `headers()` function to ensure static JS/CSS files are cached by the browser and Cloudflare's CDN, while HTML pages remain uncached:
+
+```typescript
+async headers() {
+  return [
+    {
+      source: '/_next/static/:path*',
+      headers: [
+        { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
+      ],
+    },
+  ];
+},
+```
+
+**Why this is needed:**
+- OpenNext automatically sets `private, no-store` on **all** responses by default — including static JS/CSS
+- Without this rule, browsers re-download every stylesheet and script on every page load
+- `/_next/static/` files are safe to cache permanently because Next.js includes a **content hash** in every filename — a new build generates new filenames, so there's no risk of stale files
+- HTML pages intentionally keep `private, no-store` so Cloudflare's CDN never caches them — they are served from **KV cache** by the Worker instead
+
 #### Page-Level Revalidation
 
 All pages use **on-demand revalidation only**:
