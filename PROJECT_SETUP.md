@@ -212,6 +212,30 @@ SANITY_STUDIO_PROJECT_ID=your_project_id
 SANITY_STUDIO_DATASET=production
 ```
 
+### 4. Configure Sanity Client
+
+**Important:** Set `useCdn: false` in your Sanity client for instant webhook updates.
+
+In `web/lib/sanity.ts` (or wherever your Sanity client is configured):
+
+```typescript
+import { createClient } from "@sanity/client";
+
+export const client = createClient({
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET!,
+  apiVersion: "2024-01-01",
+  useCdn: false, // CRITICAL: Disable CDN for instant webhook updates
+});
+```
+
+**Why `useCdn: false`?**
+- Sanity CDN has 2-5 second propagation delay
+- Cache warming would fetch stale data before CDN updates
+- Results in "one-change-behind" behavior
+- Direct API queries get fresh data immediately
+- KV edge caching protects against excessive API calls
+
 ---
 
 ## Cloudflare Infrastructure
@@ -614,6 +638,35 @@ All of the above, plus any others needed for local testing.
 - Regenerate webhook secret and update in both places
 - Ensure webhook URL uses `https://` not `http://`
 - Check webhook is enabled in Sanity
+
+---
+
+### Issue: Content Updates One Change Behind
+
+**Symptoms:** Webhook fires successfully (200 OK) but website shows previous version, not latest
+
+**Cause:** Sanity client using CDN with 2-5 second propagation delay. Cache warming fetches stale data before CDN updates.
+
+**Solution:**
+Disable CDN in your Sanity client configuration:
+
+```typescript
+// lib/sanity.ts
+import { createClient } from "@sanity/client";
+
+export const client = createClient({
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET!,
+  apiVersion: "2024-01-01",
+  useCdn: false, // Disable CDN for instant updates via webhook
+});
+```
+
+**Impact:**
+- Queries go directly to Sanity API (no CDN delay)
+- Cache warming gets fresh data immediately
+- Minimal increase in API calls (~20-30/month for typical usage)
+- Edge caching via KV still protects against excessive API calls
 
 ---
 
