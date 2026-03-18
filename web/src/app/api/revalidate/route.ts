@@ -1,8 +1,6 @@
 import { revalidatePath } from 'next/cache'
 import { NextRequest, NextResponse } from 'next/server'
 
-export const runtime = 'edge'
-
 /**
  * Webhook endpoint for Sanity to trigger on-demand revalidation
  * Called when content is published in Sanity
