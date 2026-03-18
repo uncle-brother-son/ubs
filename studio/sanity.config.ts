@@ -7,7 +7,7 @@ export default defineConfig({
   name: 'default',
   title: 'UBS Site',
 
-  projectId: 'ddua7oi6',
+  projectId: '9tqz91vf',
   dataset: 'production',
 
   plugins: [

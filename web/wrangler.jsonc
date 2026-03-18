@@ -15,7 +15,7 @@
   ],
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
   "vars": {
-    "NEXT_PUBLIC_SANITY_PROJECT_ID": "ddua7oi6",
+    "NEXT_PUBLIC_SANITY_PROJECT_ID": "9tqz91vf",
     "NEXT_PUBLIC_SANITY_DATASET": "production"
   },
   "kv_namespaces": [
