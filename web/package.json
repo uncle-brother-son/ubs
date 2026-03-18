@@ -7,7 +7,8 @@
     "build": "next build",
     "pages:build": "opennextjs-cloudflare build",
     "preview": "npm run pages:build && wrangler dev",
-    "deploy": "opennextjs-cloudflare deploy",
+    "deploy": "npm run pages:build && wrangler deploy",
+    "deploy:full": "opennextjs-cloudflare deploy",
     "start": "next start",
     "lint": "eslint"
   },
