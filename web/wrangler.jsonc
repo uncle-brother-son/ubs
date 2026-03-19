@@ -15,7 +15,8 @@
   ],
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
   "vars": {
-    "CONTACT_EMAIL": "wayne@unclebrotherson.com"
+    "CONTACT_EMAIL": "wayne@unclebrotherson.com",
+    "PREVIEW_PASSWORD": "space"
   },
   "kv_namespaces": [
     {
