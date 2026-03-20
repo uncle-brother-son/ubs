@@ -45,7 +45,7 @@ export function HoldingPageClient() {
             <p className="m-0">More coming soon.</p>
           </div>
           <div className="flex gap-3">
-            <a href={`https://www.linkedin.com/in/wayne-holland`} className="border-b border-dotted hover:border-solid" aria-label={`Visit my LinkedIn profile`}>LinkedIn</a>
+            <a href={`https://www.linkedin.com/in/wayneholland`} target='_blank' rel='noopener noreferrer' className="border-b border-dotted hover:border-solid" aria-label={`Visit my LinkedIn profile`}>LinkedIn</a>
             {email && (
               <a href={`mailto:${email}`} className="border-b border-dotted hover:border-solid" aria-label="Send me an email">Contact me</a>
             )}
