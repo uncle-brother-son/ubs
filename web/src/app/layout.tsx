@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { getHomepage } from '@/sanity/queries';
+import { getSeoData } from '@/sanity/queries';
 import { urlFor } from '@/sanity/image';
 
 export async function generateMetadata(): Promise<Metadata> {
-  const data = await getHomepage();
+  const data = await getSeoData();
   
   // Fallback values
   const title = data?.seoTitle || "Uncle Brother Son | eCommerce Design Collective for Visionary Brands";

@@ -14,3 +14,13 @@
   --text-14: 14px;
 }
 
+@layer components {
+
+  /* Global styles */
+  * { @apply focus-visible:outline-0 focus-visible:bg-black focus-visible:p-1 focus-visible:-m-1 focus-visible:text-white focus-visible:rounded transition-all duration-500; }
+  html { @apply scroll-smooth scroll-pt-14 bg-white; }
+
+  /* Temp styles */
+  .grid_ { @apply grid grid-cols-6 lg:grid-cols-24 mx-6 lg:mx-8 gap-x-6 lg:gap-x-8; }
+
+}
