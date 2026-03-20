@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, type FormEvent } from 'react'
 import { Icon } from '@/components/Icons'
 
 export function HoldingPageClient() {
@@ -11,10 +11,10 @@ export function HoldingPageClient() {
   const [email, setEmail] = useState<string | null>(null)
 
   useEffect(() => {
-    fetch('/api/contact').then(r => r.json()).then(d => { if (d.e) setEmail(d.e) })
+    fetch('/api/contact').then(r => r.json() as Promise<{ e?: string }>).then(d => { if (d.e) setEmail(d.e) })
   }, [])
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
     setLoading(true)
     setError(false)
